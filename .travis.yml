@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t hristodimitrov/docker -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true hristodimitrov/docker npm run test -- --coverage
